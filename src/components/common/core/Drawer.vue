@@ -15,7 +15,7 @@
         <v-list-item-avatar v-if="!mini">
           <v-icon>mdi-phone-voip</v-icon>
         </v-list-item-avatar>
-        <v-list-item-title v-if="!mini">Winsor Telecom</v-list-item-title>
+        <v-list-item-title v-if="!mini">Windsor Telecom</v-list-item-title>
         <v-btn icon @click.stop="mini = !mini">
           <v-icon>{{ mini ? "mdi-chevron-right" : "mdi-chevron-left" }}</v-icon>
         </v-btn>
