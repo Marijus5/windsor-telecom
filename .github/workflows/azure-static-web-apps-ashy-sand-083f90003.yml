@@ -9,12 +9,28 @@ on:
     branches:
       - main
   workflow_dispatch:
-    branches:
-      - 'release/**'
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    if: ${{ (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') && !contains(github.ref_name, 'release')) }}
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
@@ -36,7 +52,7 @@ jobs:
           ###### End of Repository/Build Configurations ######
   
   build_and_deploy_job_prod:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && contains(github.ref_name, 'release')
     runs-on: ubuntu-latest
     name: Build and Deploy Job Prod
     steps:
