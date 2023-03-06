@@ -30,7 +30,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'Modify deployment target to vorectcontainer'
-        run: az webapp config appsettings set --name "megabooking" --resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
+        run: az webapp config appsettings set --name "settarget" --resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
       - name: 'Logout from Azure'
         run: az logout
       - uses: actions/checkout@v2
