@@ -40,14 +40,18 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'Modify deployment target to vorectcontainer'
         run: az webapp config appsettings set --name "settarget" --resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
-      - name: 'Logout from Azure'
-        run: az logout
+      - name: Restart WebApp after re-configure
+        run: az webapp restart --name "settarget" --resource-group "MegaAirportCars"  
       - name: 'Deploy'
         uses: azure/webapps-deploy@v2
         with: 
           app-name: settarget
           publish-profile: ${{ secrets.AZURE_BOOKING }}
           package: './dist'
+      - name: 'Change back deployment target to wwwroot'
+        run: az webapp config appsettings set --name "settarget" --resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot"
+      - name: 'Logout from Azure'
+        run: az logout
       
   
   build_and_deploy_job_prod:
