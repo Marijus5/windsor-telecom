@@ -34,14 +34,14 @@ jobs:
         run: |
           yarn install
           yarn run build
-      #- name: Login to Azure
-      #  uses: azure/login@v1
-      #  with:
-      #    creds: ${{ secrets.AZURE_CREDENTIALS }}
-      #- name: 'Modify deployment target to vorectcontainer'
-      #  run: az webapp config appsettings set --name "settarget" --resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot"
-      #- name: 'Logout from Azure'
-      #  run: az logout
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: 'Modify deployment target to vorectcontainer'
+        run: az webapp config appsettings set --name "settarget" --resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
+      - name: 'Logout from Azure'
+        run: az logout
       - name: 'Deploy'
         uses: azure/webapps-deploy@v2
         with: 
