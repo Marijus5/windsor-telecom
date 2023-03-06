@@ -31,7 +31,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           allow-no-subscriptions: true
       - name: 'Modify deployment target to vorectcontainer'
-        run: az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} -- resource-group ${{ env.AZURE_RESOURCE_GROUP }} --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
+        run: az webapp config appsettings set --name "megabooking" -- resource-group "MegaAirportCars" --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
       - name: 'Logout from Azure'
         run: az logout
       - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_SAND_083F90003 }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_BOOKING }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
