@@ -30,6 +30,10 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           allow-no-subscriptions: true
+      - name: 'Modify deployment target to vorectcontainer'
+        run: az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} -- resource-group ${{ env.AZURE_RESOURCE_GROUP }} --settings DEPLOYMENT_TARGET="c:\home\site\wwwroot\voreactcontainer"
+      - name: 'Logout from Azure'
+        run: az logout
       - uses: actions/checkout@v2
         with:
           submodules: true
