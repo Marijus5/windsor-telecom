@@ -28,7 +28,7 @@ jobs:
         npx webpack
         
     - name: Upload
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
 
     - name: Deploy
-      uses: actions/deploy-pages@v3
+      uses: actions/deploy-pages@v2
